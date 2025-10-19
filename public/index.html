@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🎵 TikTok Downloader</title>
+    <meta name="description" content="Download your favorite TikTok videos and audio with ease" />
+    <meta name="author" content="denisxd7" />
+
+    <meta property="og:title" content="🎵 TikTok Downloader" />
+    <meta property="og:description" content="Download your favorite TikTok videos and audio with ease" />
+    <meta property="og:type" content="website" />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            keyframes: {
+              'fade-in': {
+                '0%': {
+                  opacity: '0',
+                  transform: 'translateY(10px)'
+                },
+                '100%': {
+                  opacity: '1',
+                  transform: 'translateY(0)'
+                }
+              },
+              'scale-in': {
+                '0%': {
+                  transform: 'scale(0.95)',
+                  opacity: '0'
+                },
+                '100%': {
+                  transform: 'scale(1)',
+                  opacity: '1'
+                }
+              }
+            },
+            animation: {
+              'fade-in': 'fade-in 0.3s ease-out',
+              'scale-in': 'scale-in 0.2s ease-out'
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 text-white font-sans overflow-hidden relative">
+      <!-- Background animation elements -->
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse" style="animation-delay: 4s;"></div>
+      </div>
+
+      <!-- Main content -->
+      <div class="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
+        <!-- Header -->
+        <div class="text-center mb-12 animate-fade-in">
+          <h1 class="text-6xl md:text-7xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent mb-4 animate-scale-in">
+            🎵 TikTok Downloader
+          </h1>
+          <p class="text-xl text-gray-300 max-w-md mx-auto">
+            Download your favorite TikTok videos and audio with ease
+          </p>
+        </div>
+
+        <!-- Download form -->
+        <div class="w-full max-w-md space-y-6 animate-fade-in" style="animation-delay: 0.2s;">
+          <!-- URL Input -->
+          <div class="relative group">
+            <input 
+              id="url" 
+              type="text" 
+              placeholder="Paste TikTok link here (Video)"
+              class="w-full px-6 py-4 bg-black/30 backdrop-blur-md border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 hover:bg-black/40 hover:border-white/30"
+            />
+            <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+          </div>
+
+          <!-- Format Select -->
+          <div class="relative group">
+            <select 
+              id="format"
+              class="w-full px-6 py-4 bg-black/30 backdrop-blur-md border border-white/20 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 hover:bg-black/40 hover:border-white/30 appearance-none cursor-pointer"
+            >
+              <option value="mp4" class="bg-gray-800">MP4 (Video)</option>
+              <option value="mp3" class="bg-gray-800">MP3 (Audio)</option>
+            </select>
+            <div class="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+              <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </div>
+            <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+          </div>
+
+          <!-- Download Button -->
+          <button 
+            onclick="download()"
+            class="w-full px-6 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 rounded-2xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25 focus:outline-none focus:ring-4 focus:ring-purple-500/50 active:scale-95"
+          >
+            <span class="flex items-center justify-center space-x-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+              <span>Download</span>
+            </span>
+          </button>
+        </div>
+
+        <!-- Progress Container -->
+        <div 
+          id="progress-container" 
+          class="w-full max-w-md mt-8 bg-black/30 backdrop-blur-md rounded-2xl overflow-hidden border border-white/20 animate-fade-in" 
+          style="display: none; animation-delay: 0.4s;"
+        >
+          <div 
+            id="progress-bar" 
+            class="h-3 bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-500 ease-out"
+            style="width: 0%;"
+          ></div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-16 text-center animate-fade-in" style="animation-delay: 0.6s;">
+          <p class="text-gray-400 text-sm">
+            Made by <a href="https://denisxd7.online" style="text-decoration: underline;">denisxd7.online</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const { ipcRenderer } = require('electron');
+      
+      let isDownloading = false;
+
+      async function download() {
+        if (isDownloading) return;
+        
+        const url = document.getElementById("url").value.trim();
+        const format = document.getElementById("format").value;
+
+        if (!url) {
+          showMessage("Please enter a TikTok URL.", "error");
+          return;
+        }
+
+        if (!url.includes('tiktok.com')) {
+          showMessage("Please enter a valid TikTok URL.", "error");
+          return;
+        }
+
+        isDownloading = true;
+        updateDownloadButton(true);
+        showProgressContainer();
+
+        try {
+          const res = await fetch("http://localhost:3000/download", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ url, format })
+          });
+
+          const result = await res.json();
+          
+          if (!res.ok) {
+            throw new Error(result.error || "Download failed");
+          }
+
+        } catch (error) {
+          console.error('Download error:', error);
+          showMessage(error.message || "Download failed. Please try again.", "error");
+          hideProgressContainer();
+          updateDownloadButton(false);
+          isDownloading = false;
+        }
+      }
+
+      function updateDownloadButton(downloading) {
+        const button = document.querySelector('button[onclick="download()"]');
+        if (downloading) {
+          button.innerHTML = `
+            <span class="flex items-center justify-center space-x-2">
+              <svg class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+              </svg>
+              <span>Downloading...</span>
+            </span>
+          `;
+          button.disabled = true;
+          button.classList.add('opacity-75', 'cursor-not-allowed');
+        } else {
+          button.innerHTML = `
+            <span class="flex items-center justify-center space-x-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+              <span>Download</span>
+            </span>
+          `;
+          button.disabled = false;
+          button.classList.remove('opacity-75', 'cursor-not-allowed');
+        }
+      }
+
+      function showProgressContainer() {
+        const container = document.getElementById("progress-container");
+        container.style.display = "block";
+        updateProgressBar(0);
+      }
+
+      function hideProgressContainer() {
+        const container = document.getElementById("progress-container");
+        container.style.display = "none";
+      }
+
+      function updateProgressBar(percent) {
+        const progressBar = document.getElementById("progress-bar");
+        progressBar.style.width = Math.min(percent, 100) + '%';
+      }
+
+      function showMessage(message, type = "success") {
+        const existingMessage = document.querySelector('.message-popup');
+        if (existingMessage) {
+          existingMessage.remove();
+        }
+
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message-popup fixed top-4 right-4 z-50 px-6 py-4 rounded-2xl backdrop-blur-md border animate-fade-in ${
+          type === 'success' 
+            ? 'bg-green-500/20 border-green-500/30 text-green-100' 
+            : 'bg-red-500/20 border-red-500/30 text-red-100'
+        }`;
+        messageDiv.innerHTML = `
+          <div class="flex items-center space-x-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              ${type === 'success' 
+                ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>'
+                : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>'
+              }
+            </svg>
+            <span>${message}</span>
+          </div>
+        `;
+        
+        document.body.appendChild(messageDiv);
+        
+        setTimeout(() => {
+          messageDiv.remove();
+        }, 5000);
+      }
+
+      ipcRenderer.on('download-started', () => {
+        showMessage("Download started...", "success");
+      });
+
+      ipcRenderer.on('download-progress', (event, percent) => {
+        updateProgressBar(percent);
+      });
+
+      ipcRenderer.on('conversion-progress', (event, percent) => {
+        updateProgressBar(percent);
+        showMessage(`Converting to MP3... ${percent}%`, "success");
+      });
+
+      ipcRenderer.on('download-complete', (event, data) => {
+        isDownloading = false;
+        updateDownloadButton(false);
+        hideProgressContainer();
+        
+        if (data.success) {
+          showMessage(data.message, "success");
+          document.getElementById("url").value = "";
+        } else {
+          showMessage(data.message, "error");
+        }
+      });
+
+      document.getElementById("format").addEventListener('change', function() {
+        const format = this.value;
+        const placeholder = format === 'mp4' ? 'Paste TikTok link here (Video)' : 'Paste TikTok link here (Audio)';
+        document.getElementById("url").placeholder = placeholder;
+      });
+</script>
+  </body>
+</html>
